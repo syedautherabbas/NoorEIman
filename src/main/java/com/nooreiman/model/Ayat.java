@@ -1,0 +1,81 @@
+package com.nooreiman.model;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+@Entity
+@Table(name = "ayats")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class Ayat implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue
+	@Column(name = "id")
+	private long id;
+
+	@Column(name = "chapter")
+	private long  chapter;
+
+	@Column(name = "verse")
+	private long verse;
+
+	@Column(name = "ayat")
+	private String ayat;
+
+	@Column(name = "translation")
+	private String translation;
+
+	public long getId() {
+		return id;
+	}
+
+	public long getChapter() {
+		return chapter;
+	}
+
+	public void setChapter(long chapter) {
+		this.chapter = chapter;
+	}
+
+	public long getVerse() {
+		return verse;
+	}
+
+	public void setVerse(long verse) {
+		this.verse = verse;
+	}
+
+	public String getAyat() {
+		return ayat;
+	}
+
+	public void setAyat(String ayat) {
+		this.ayat = ayat;
+	}
+
+	public String getTranslation() {
+		return translation;
+	}
+
+	public void setTranslation(String translation) {
+		this.translation = translation;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+}
