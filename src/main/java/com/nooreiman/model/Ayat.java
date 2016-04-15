@@ -2,10 +2,12 @@ package com.nooreiman.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
@@ -37,7 +39,7 @@ public class Ayat implements Serializable {
 	public long getId() {
 		return id;
 	}
-
+	@ManyToOne(cascade = CascadeType.ALL ,targetEntity= Surah.class)
 	public long getChapter() {
 		return chapter;
 	}

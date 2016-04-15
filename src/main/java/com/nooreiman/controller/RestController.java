@@ -17,7 +17,7 @@ import com.nooreiman.model.Status;
 import com.nooreiman.services.DataServices;
 
 @Controller
-@RequestMapping("/ayats")
+@RequestMapping("/Quran")
 public class RestController {
 
 	@Autowired
@@ -25,19 +25,38 @@ public class RestController {
 
 	static final Logger logger = Logger.getLogger(RestController.class);
 
-	@RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	
+	@RequestMapping(value = "surah/{id}/list", method = RequestMethod.GET)
 	public @ResponseBody
-	Status addAyat(@RequestBody Ayat ayat) {
+	List<Ayat> getAllAyatsFromSurah(@PathVariable("id") long id) {
+
+		List<Ayat> ayatList = null;
 		try {
-			dataServices.addEntity(ayat);
-			return new Status(1, "Ayat added Successfully !");
+			System.out.println("SURAH FOR WHICH ALL AYATS ARE BEING REQUESTED "+id);
+			ayatList = dataServices.getEntityListBySpecificSurah(id);
+
 		} catch (Exception e) {
-			// e.printStackTrace();
-			return new Status(0, e.toString());
+			e.printStackTrace();
 		}
 
+		return ayatList;
 	}
 
+	
+
+	@RequestMapping(value = "/surah/{id}", method = RequestMethod.GET)
+	public @ResponseBody
+	Ayat getSpecificAyatsfromSurah(@PathVariable("id") long id) {
+		Ayat ayat = null;
+		try {
+			ayat = dataServices.getEntityById(id);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ayat;
+	}
+	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public @ResponseBody
 	Ayat getAyat(@PathVariable("id") long id) {
@@ -50,6 +69,9 @@ public class RestController {
 		}
 		return ayat;
 	}
+	
+	
+	
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public @ResponseBody
@@ -78,4 +100,19 @@ public class RestController {
 		}
 
 	}
+	
+	
+	@RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody
+	Status addAyat(@RequestBody Ayat ayat) {
+		try {
+			dataServices.addEntity(ayat);
+			return new Status(1, "Ayat added Successfully !");
+		} catch (Exception e) {
+			// e.printStackTrace();
+			return new Status(0, e.toString());
+		}
+
+	}
+
 }

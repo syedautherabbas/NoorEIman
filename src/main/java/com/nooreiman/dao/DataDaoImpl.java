@@ -2,6 +2,7 @@ package com.nooreiman.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -40,6 +41,18 @@ public class DataDaoImpl implements DataDao {
 		return ayat;
 	}
 
+	@Override
+	public List<Ayat>  getEntityListBySpecificSurah(long id)
+	{
+		
+		session = sessionFactory.openSession();
+		
+				
+				Query query =session.createQuery("from Ayat a where a.chapter ="+id);
+				List<Ayat> ayatList =query.list();
+		return ayatList;
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Ayat> getEntityList() throws Exception {

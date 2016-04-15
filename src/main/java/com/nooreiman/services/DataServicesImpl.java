@@ -31,5 +31,13 @@ public class DataServicesImpl implements DataServices {
 	public boolean deleteEntity(long id) throws Exception {
 		return dataDao.deleteEntity(id);
 	}
+	
+@Override
+	public List<Ayat> getEntityListBySpecificSurah(long id) throws Exception {
+	
+	
+		return dataDao.getEntityListBySpecificSurah(id);
+	}
+	
 
 }
