@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nooreiman.model.Ayat;
 import com.nooreiman.model.Status;
+import com.nooreiman.model.Surah;
 import com.nooreiman.services.DataServices;
 
 @Controller
@@ -33,7 +34,7 @@ public class RestController {
 		List<Ayat> ayatList = null;
 		try {
 			System.out.println("SURAH FOR WHICH ALL AYATS ARE BEING REQUESTED "+id);
-			ayatList = dataServices.getEntityListBySpecificSurah(id);
+			ayatList = dataServices.getAyatListBySpecificSurah(id);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -49,7 +50,7 @@ public class RestController {
 	Ayat getSpecificAyatsfromSurah(@PathVariable("id") long id) {
 		Ayat ayat = null;
 		try {
-			ayat = dataServices.getEntityById(id);
+			ayat = dataServices.getAyatById(id);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -62,7 +63,7 @@ public class RestController {
 	Ayat getAyat(@PathVariable("id") long id) {
 		Ayat ayat = null;
 		try {
-			ayat = dataServices.getEntityById(id);
+			ayat = dataServices.getAyatById(id);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -71,15 +72,28 @@ public class RestController {
 	}
 	
 	
-	
+	@RequestMapping(value = "/listofallsurahs", method = RequestMethod.GET)
+	public @ResponseBody
+	List<Surah> getallSurahs() {
+System.out.println("LIST OF ALL SURAHS REQUESTED");
+		List<Surah> surahList = null;
+		try {
+			surahList = dataServices.getSurahList();
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return surahList;
+	}
+
+	@RequestMapping(value = "/listofallayats", method = RequestMethod.GET)
 	public @ResponseBody
 	List<Ayat> getAyats() {
 
 		List<Ayat> ayatList = null;
 		try {
-			ayatList = dataServices.getEntityList();
+			ayatList = dataServices.getAyatList();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -93,7 +107,7 @@ public class RestController {
 	Status deleteAyat(@PathVariable("id") long id) {
 
 		try {
-			dataServices.deleteEntity(id);
+			dataServices.deleteAyat(id);
 			return new Status(1, "Ayat deleted Successfully !");
 		} catch (Exception e) {
 			return new Status(0, e.toString());
@@ -106,7 +120,7 @@ public class RestController {
 	public @ResponseBody
 	Status addAyat(@RequestBody Ayat ayat) {
 		try {
-			dataServices.addEntity(ayat);
+			dataServices.addAyat(ayat);
 			return new Status(1, "Ayat added Successfully !");
 		} catch (Exception e) {
 			// e.printStackTrace();

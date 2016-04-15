@@ -10,7 +10,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 
 @Entity
-@Table(name = "surahs")
+@Table(name ="surahs")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Surah {
 
@@ -18,9 +18,12 @@ public class Surah {
 	@GeneratedValue
 	@Column(name = "id")
 	private long id;
-	
+	@Column(name = "surahnumber")
 	private long surahnumber;
+	@Column(name = "surahname")
 	private String surahname;
+	
+	
 	public long getId() {
 		return id;
 	}

@@ -9,6 +9,7 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.nooreiman.model.Ayat;
+import com.nooreiman.model.Surah;
 
 public class DataDaoImpl implements DataDao {
 
@@ -19,7 +20,7 @@ public class DataDaoImpl implements DataDao {
 	Transaction tx = null;
 
 	@Override
-	public boolean addEntity(Ayat ayat) throws Exception {
+	public boolean addAyat(Ayat ayat) throws Exception {
 
 		session = sessionFactory.openSession();
 		tx = session.beginTransaction();
@@ -31,7 +32,7 @@ public class DataDaoImpl implements DataDao {
 	}
 
 	@Override
-	public Ayat getEntityById(long id) throws Exception {
+	public Ayat getAyatById(long id) throws Exception {
 		session = sessionFactory.openSession();
 		Ayat ayat = (Ayat) session.load(Ayat.class,
 				new Long(id));
@@ -42,7 +43,7 @@ public class DataDaoImpl implements DataDao {
 	}
 
 	@Override
-	public List<Ayat>  getEntityListBySpecificSurah(long id)
+	public List<Ayat>  getAyatListBySpecificSurah(long id)
 	{
 		
 		session = sessionFactory.openSession();
@@ -55,18 +56,18 @@ public class DataDaoImpl implements DataDao {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Ayat> getEntityList() throws Exception {
+	public List<Ayat> getAyatList() throws Exception {
 		session = sessionFactory.openSession();
 		tx = session.beginTransaction();
-		List<Ayat> employeeList = session.createCriteria(Ayat.class)
+		List<Ayat> ayatList = session.createCriteria(Ayat.class)
 				.list();
 		tx.commit();
 		session.close();
-		return employeeList;
+		return ayatList;
 	}
 	
 	@Override
-	public boolean deleteEntity(long id)
+	public boolean deleteAyat(long id)
 			throws Exception {
 		session = sessionFactory.openSession();
 		Object o = session.load(Ayat.class, id);
@@ -76,5 +77,26 @@ public class DataDaoImpl implements DataDao {
 		tx.commit();
 		return false;
 	}
+	
+	
+@Override
+	public List<Surah> getSurahList() throws Exception {
+	session = sessionFactory.openSession();
+	tx = session.beginTransaction();
+	List<Surah> surahList = session.createCriteria(Surah.class).list();
+	tx.commit();
+	session.close();
+	
+	for (int i=0;i<surahList.size();i++)
+	{
+		System.out.println(surahList.get(i).getSurahname());
+	}
+	if(surahList!=null)
+	{
+	System.out.println(surahList.size()+" yes surahs");
+	}
+	return surahList;
+	}
+	
 
 }
