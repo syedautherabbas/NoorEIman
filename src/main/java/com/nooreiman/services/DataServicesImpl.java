@@ -24,7 +24,7 @@ public class DataServicesImpl implements DataServices {
 	}
 
 	@Override
-	public List<Ayat> getAyatList() throws Exception {
+	public List<Ayat> getAllAyatList() throws Exception {
 		return dataDao.getAyatList();
 	}
 
@@ -45,4 +45,12 @@ public List<Surah> getSurahList() throws Exception {
 
 	return dataDao.getSurahList();
 }
+
+@Override
+public Ayat getSpecificAyatsfromSurah(long surahid, long ayatid) throws Exception {
+	return dataDao.getSpecificAyatsfromSurah(surahid, ayatid);
+	
+}
+
+
 }

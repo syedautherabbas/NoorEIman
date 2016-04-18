@@ -87,16 +87,21 @@ public class DataDaoImpl implements DataDao {
 	tx.commit();
 	session.close();
 	
-	for (int i=0;i<surahList.size();i++)
-	{
-		System.out.println(surahList.get(i).getSurahname());
-	}
-	if(surahList!=null)
-	{
-	System.out.println(surahList.size()+" yes surahs");
-	}
 	return surahList;
 	}
+
+@Override
+public Ayat getSpecificAyatsfromSurah(long surahid, long ayatid) throws Exception {
+	session = sessionFactory.openSession();
+	
+	
+	Query query =session.createQuery("from Ayat a where a.chapter =:surahid and a.verse=:ayatid");
+	query.setLong("surahid", surahid);
+	query.setLong("ayatid", ayatid);
+	Ayat ayat =(Ayat) query.uniqueResult();
+return ayat;
+
+}
 	
 
 }

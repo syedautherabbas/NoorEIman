@@ -24,6 +24,7 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.nooreiman.model.Ayat</value>
+				<value>com.nooreiman.model.Surah</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

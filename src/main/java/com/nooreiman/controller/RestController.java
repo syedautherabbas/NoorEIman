@@ -45,12 +45,12 @@ public class RestController {
 
 	
 
-	@RequestMapping(value = "/surah/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/surah/{surahid}/ayat/{ayatid}", method = RequestMethod.GET)
 	public @ResponseBody
-	Ayat getSpecificAyatsfromSurah(@PathVariable("id") long id) {
+	Ayat getSpecificAyatsfromSurah(@PathVariable("surahid") long surahid,@PathVariable("ayatid") long ayatid) {
 		Ayat ayat = null;
 		try {
-			ayat = dataServices.getAyatById(id);
+			ayat = dataServices.getSpecificAyatsfromSurah(surahid, ayatid);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -90,10 +90,10 @@ System.out.println("LIST OF ALL SURAHS REQUESTED");
 	@RequestMapping(value = "/listofallayats", method = RequestMethod.GET)
 	public @ResponseBody
 	List<Ayat> getAyats() {
-
+System.out.println("LIST OF ALL AYATS");
 		List<Ayat> ayatList = null;
 		try {
-			ayatList = dataServices.getAyatList();
+			ayatList = dataServices.getAllAyatList();
 
 		} catch (Exception e) {
 			e.printStackTrace();

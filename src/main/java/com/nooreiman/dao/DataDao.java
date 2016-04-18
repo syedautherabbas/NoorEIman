@@ -13,4 +13,5 @@ public interface DataDao {
 	public boolean deleteAyat(long id) throws Exception;
 	public List<Ayat> getAyatListBySpecificSurah(long id) throws Exception;
 	public List<Surah> getSurahList() throws Exception;
+	public Ayat getSpecificAyatsfromSurah(long surahid,long ayatid ) throws Exception;
 }
