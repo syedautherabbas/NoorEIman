@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.nooreiman.model.Ayat;
 import com.nooreiman.model.Status;
 import com.nooreiman.model.Surah;
+import com.nooreiman.model.Translation;
 import com.nooreiman.services.DataServices;
 
 @Controller
@@ -44,7 +45,56 @@ public class RestController {
 	}
 
 	
+	@RequestMapping(value = "surah/{id}/list/translation", method = RequestMethod.GET)
+	public @ResponseBody
+	List<Translation> getAllTranslationsFromSurah(@PathVariable("id") long id) {
 
+		List<Translation> translationList = null;
+		try {
+			System.out.println("SURAH FOR WHICH ALL AYATS ARE BEING REQUESTED "+id);
+			translationList = dataServices.getTranslationListBySpecificSurah(id);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return translationList;
+	}
+	
+	
+	@RequestMapping(value = "/listofalltranslations", method = RequestMethod.GET)
+	public @ResponseBody
+	List<Translation> getAllTranslations() {
+System.out.println("LIST OF ALL getAllTranslations");
+		List<Translation> translationList = null;
+		try {
+			translationList= dataServices.getTranslationList();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return translationList;
+	}
+
+
+	
+
+	
+	@RequestMapping(value = "/surah/{surahid}/ayat/{ayatid}/translation", method = RequestMethod.GET)
+	public @ResponseBody
+	Translation getSpecificTranslationfromSurah(@PathVariable("surahid") long surahid,@PathVariable("ayatid") long ayatid) {
+		Translation translation = null;
+		try {
+			translation = dataServices.getSpecificTranslationfromSurah(surahid, ayatid);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return translation ;
+	}
+	
+	
 	@RequestMapping(value = "/surah/{surahid}/ayat/{ayatid}", method = RequestMethod.GET)
 	public @ResponseBody
 	Ayat getSpecificAyatsfromSurah(@PathVariable("surahid") long surahid,@PathVariable("ayatid") long ayatid) {

@@ -14,9 +14,9 @@ import javax.persistence.Table;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "ayats")
+@Table(name = "translation")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Ayat implements Serializable {
+public class Translation implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -31,8 +31,8 @@ public class Ayat implements Serializable {
 	@Column(name = "verse")
 	private long verse;
 
-	@Column(name = "ayat")
-	private String ayat;
+	@Column(name = "translation")
+	private String translation;
 
 	
 
@@ -51,6 +51,7 @@ public class Ayat implements Serializable {
 	
 	
 	
+	
 	public long getVerse() {
 		return verse;
 	}
@@ -59,14 +60,14 @@ public class Ayat implements Serializable {
 		this.verse = verse;
 	}
 
-	public String getAyat() {
-		return ayat;
+	public String getTranslation() {
+		return translation;
 	}
 
-	public void setAyat(String ayat) {
-		this.ayat = ayat;
+	public void setTranslation(String translation) {
+		this.translation = translation;
 	}
-	
+
 	
 
 	public static long getSerialversionuid() {

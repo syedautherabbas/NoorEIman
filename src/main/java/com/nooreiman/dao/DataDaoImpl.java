@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.nooreiman.model.Ayat;
 import com.nooreiman.model.Surah;
+import com.nooreiman.model.Translation;
 
 public class DataDaoImpl implements DataDao {
 
@@ -102,6 +103,57 @@ public Ayat getSpecificAyatsfromSurah(long surahid, long ayatid) throws Exceptio
 return ayat;
 
 }
+
+
+
+@Override
+public List<Translation> getTranslationList() throws Exception {
+	session = sessionFactory.openSession();
+	tx = session.beginTransaction();
+	List<Translation> translationList = session.createCriteria(Translation.class)
+			.list();
+	tx.commit();
+	session.close();
+	return translationList;
+}
+
+
+@Override
+public Translation getTranslationById(long id) throws Exception {
+	session = sessionFactory.openSession();
+	Translation translation = (Translation) session.load(Translation.class,
+			new Long(id));
+	tx = session.getTransaction();
+	session.beginTransaction();
+	tx.commit();
+	return translation;
+}
+
+
+
+
+@Override
+public List<Translation> getTranslationListBySpecificSurah(long id) throws Exception {
+	session = sessionFactory.openSession();
 	
+	
+	Query query =session.createQuery("from Translation a where a.chapter ="+id);
+	List<Translation> translationList =query.list();
+return translationList;
+}
+
+
+
+@Override
+public Translation getSpecificTranslationfromSurah(long surahid, long ayatid) throws Exception {
+	session = sessionFactory.openSession();
+	
+	
+	Query query =session.createQuery("from Translation a where a.chapter =:surahid and a.verse=:ayatid");
+	query.setLong("surahid", surahid);
+	query.setLong("ayatid", ayatid);
+	Translation translation =(Translation) query.uniqueResult();
+return translation;
+}
 
 }

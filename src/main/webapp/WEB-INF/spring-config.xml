@@ -25,6 +25,7 @@
 			<list>
 				<value>com.nooreiman.model.Ayat</value>
 				<value>com.nooreiman.model.Surah</value>
+					<value>com.nooreiman.model.Translation</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

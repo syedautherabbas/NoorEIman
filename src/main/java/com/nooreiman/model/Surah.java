@@ -22,8 +22,28 @@ public class Surah {
 	private long surahnumber;
 	@Column(name = "surahname")
 	private String surahname;
+	@Column(name = "propername")
+	private String propername;
+	@Column(name = "translation")
+	private String translation;
 	
 	
+	
+	
+	
+	
+	public String getPropername() {
+		return propername;
+	}
+	public void setPropername(String propername) {
+		this.propername = propername;
+	}
+	public String getTranslation() {
+		return translation;
+	}
+	public void setTranslation(String translation) {
+		this.translation = translation;
+	}
 	public long getId() {
 		return id;
 	}
