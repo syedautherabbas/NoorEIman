@@ -42,6 +42,17 @@ public class DataDaoImpl implements DataDao {
 		tx.commit();
 		return ayat;
 	}
+	
+	@Override
+	public Surah getSurahById(long id) throws Exception {
+		session = sessionFactory.openSession();
+		Surah surah = (Surah) session.load(Surah.class,
+				new Long(id));
+		tx = session.getTransaction();
+		session.beginTransaction();
+		tx.commit();
+		return surah;
+	}
 
 	@Override
 	public List<Ayat>  getAyatListBySpecificSurah(long id)

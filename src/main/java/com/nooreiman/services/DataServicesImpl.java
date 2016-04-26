@@ -40,7 +40,14 @@ public class DataServicesImpl implements DataServices {
 	
 		return dataDao.getAyatListBySpecificSurah(id);
 	}
-	
+
+@Override
+public Surah getSurahById(long id) throws Exception {
+	// TODO Auto-generated method stub
+	return dataDao.getSurahById(id);
+}
+
+
 @Override
 public List<Surah> getSurahList() throws Exception {
 

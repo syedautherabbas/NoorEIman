@@ -108,9 +108,9 @@ System.out.println("LIST OF ALL getAllTranslations");
 		return ayat;
 	}
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/ayat/{id}", method = RequestMethod.GET)
 	public @ResponseBody
-	Ayat getAyat(@PathVariable("id") long id) {
+	Ayat getAyatByID(@PathVariable("id") long id) {
 		Ayat ayat = null;
 		try {
 			ayat = dataServices.getAyatById(id);
@@ -120,7 +120,20 @@ System.out.println("LIST OF ALL getAllTranslations");
 		}
 		return ayat;
 	}
+
 	
+	@RequestMapping(value = "surah/{id}", method = RequestMethod.GET)
+	public @ResponseBody
+	Surah getSurahByID(@PathVariable("id") long id) {
+		Surah surah = null;
+		try {
+			surah = dataServices.getSurahById(id);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return surah;
+	}
 	
 	@RequestMapping(value = "/listofallsurahs", method = RequestMethod.GET)
 	public @ResponseBody

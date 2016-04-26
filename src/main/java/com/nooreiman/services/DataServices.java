@@ -12,6 +12,10 @@ public interface DataServices {
 	public List<Ayat> getAllAyatList() throws Exception;
 	public List<Ayat> getAyatListBySpecificSurah(long surahid) throws Exception;
 	public boolean deleteAyat(long id) throws Exception;
+	
+	
+	
+	public Surah getSurahById(long id) throws Exception;
 	public List<Surah> getSurahList() throws Exception;
 	public Ayat getSpecificAyatsfromSurah(long surahid,long ayatid ) throws Exception;
 	public Translation getTranslationById(long id) throws Exception;
