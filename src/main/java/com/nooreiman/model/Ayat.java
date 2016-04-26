@@ -9,12 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "ayats")
+@SecondaryTable(name="translation")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Ayat implements Serializable {
 
@@ -34,6 +36,9 @@ public class Ayat implements Serializable {
 	@Column(name = "ayat")
 	private String ayat;
 
+	@Column(table="translation")
+	private String translation;
+	
 	
 
 	public long getId() {
@@ -76,5 +81,16 @@ public class Ayat implements Serializable {
 	public void setId(long id) {
 		this.id = id;
 	}
+	@Column(table="translation")
+	public String getTranslation() {
+		return translation;
+	}
+	public void setTranslation(String translation) {
+		this.translation = translation;
+	}
 
+	
+	
+	
+	
 }
