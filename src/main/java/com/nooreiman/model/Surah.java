@@ -26,12 +26,20 @@ public class Surah {
 	private String propername;
 	@Column(name = "translation")
 	private String translation;
+	@Column(name = "arabicname")
+	private String arabicname;
 	
 	
 	
 	
 	
 	
+	public String getArabicname() {
+		return arabicname;
+	}
+	public void setArabicname(String arabicname) {
+		this.arabicname = arabicname;
+	}
 	public String getPropername() {
 		return propername;
 	}
