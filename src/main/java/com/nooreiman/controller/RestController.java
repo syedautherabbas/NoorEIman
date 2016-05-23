@@ -41,7 +41,9 @@ public class RestController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		Ayat ayat=new Ayat();
+		ayat.setAyat("test line");
+ayatList.add(ayat);
 		return ayatList;
 	}
 
