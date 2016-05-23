@@ -35,7 +35,7 @@ public class RestController {
 		List<Ayat> ayatList = null;
 		try {
 			System.out.println("SURAH FOR WHICH ALL AYATS ARE BEING REQUESTED "+id);
-			System.out.println("jenkins update");
+			System.out.println("jenkins update 2");
 			ayatList = dataServices.getAyatListBySpecificSurah(id);
 
 		} catch (Exception e) {
